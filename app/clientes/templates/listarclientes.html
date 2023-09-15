@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for mensaje in get_flashed_messages() %}
+    <link rel="stylesheet" href="static/listar.css">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" data-dismiss="alert" class="close">
+                &times;
+            </button>
+            {{ mensaje }}
+        </div>
+    {% endfor %}
+
+    {{ clientes }}
+
+    <h1 class="listar-title">Lista de Clientes</h1>
+    <table class="table table-bordered listar-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Contraseña</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.username  }}</td>
+                    <td>{{ cliente.email  }}</td>
+                    <td>{{ cliente.password  }}</td>
+                    <td>
+                        <a href= "/clientes/editar/{{cliente.id}}">
+                            Actualizar
+                        </a>
+                    </td>
+                    <td>
+                        <a href= "/clientes/eliminar/{{cliente.id}}">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

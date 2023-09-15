@@ -1,0 +1,19 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/listar.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+   
+{% endblock %}
+
+{% block body %}
+
+    <!-- Espacio para poner la vista-->
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+    {{ super() }}
+    {% endblock %}
+{% endblock %}
