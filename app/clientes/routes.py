@@ -18,7 +18,7 @@ def crear():
         app.db.session.commit()
         flash("Cliente registrado con exito")
         return redirect('/clientes/listar')
-    return render_template('new.html' ,form = form)
+    return render_template('newclientes.html' ,form = form)
 
 @clientes.route('/listar')
 def listar():

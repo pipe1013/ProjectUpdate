@@ -15,7 +15,7 @@ def login():
         #Seleccionar el cliente con el username
         c = app.models.Cliente.query.filter_by(username = f.username.data).first()
         if c is None or not c.check_password(f.password.data):
-            return redirect('auth/login')
+            return redirect('/clientes/listar')
         else:
             login_user(c , True)
             return redirect('/productos/listar')

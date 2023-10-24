@@ -1,43 +1,37 @@
 {% extends 'base.html'%}
 
 {%block content%}
-    {%for mensaje in get_flashed_messages()%}
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" data-dismiss="alert" class="close">
-                 &times;
-            </button>
-            {{mensaje}}
-        </div>
-{%endfor%}
-{% if current_user.is_authenticated %}
-<li>
-    <a href="/auth/logout">Cerrar Sesion</a>
-</li>
-{% else %}
-<li>
-    <a href="/auth/login">Iniciar Sesion</a>
-</li>
-{% endif %}
-
+ 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/clientes/listar">Clientes</a>
+            
+         <a class="nav-link" href="/productos/listar">Productos</a>
+          
+    </div>
     <h1>Lista de productos</h1>
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>nombre</th>
                 <th>precio</th>
-                <th>imagen</th>
+                <th>fecha</th>
+                <th>descripcion</th>
                 <th>actualizar</th>
                 <th>eliminar</th>
+                <th>Agregar</th>
             </tr>
         </thead>
         <tbody>
             {% for producto in productos %}
             <tr>
+                <td>{{ producto.id }}</td>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.precio }}</td>
-                <td>
-                    <img src="imagenes/{{producto.imagen}}" alt="" width="100px">
-                </td>
+                <td>{{ producto.fecha }}</td>
+                <td>{{ producto.descripcion }}</td>
+              
                 <td>
                     <a href="/productos/editar/{{producto.id}}">
                         Actualizar
@@ -48,6 +42,12 @@
                         Eliminar
                     </a>
                 </td>
+                <td>
+                    <a href="/productos/crear">
+                        <img src="{{ url_for('static', filename='img/mas.png') }}" alt="Mas" width="20" height="20">
+                    </a>
+                </td>
+                
             </tr>
             {%endfor%}
         </tbody>

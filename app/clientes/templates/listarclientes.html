@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for mensaje in get_flashed_messages() %}
-    <link rel="stylesheet" href="static/listar.css">
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" data-dismiss="alert" class="close">
-                &times;
-            </button>
-            {{ mensaje }}
-        </div>
-    {% endfor %}
+    
 
-    {{ clientes }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/clientes/listar">Clientes</a>
+                
+             <a class="nav-link" href="/productos/listar">Productos</a>
+              
+        </div>
+    </nav>
 
     <h1 class="listar-title">Lista de Clientes</h1>
     <table class="table table-bordered listar-table">
@@ -21,22 +20,28 @@
                 <th>Contraseña</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
+                <th>Agregar</th>
             </tr>
         </thead>
         <tbody>
             {% for cliente in clientes %}
                 <tr>
-                    <td>{{ cliente.username  }}</td>
-                    <td>{{ cliente.email  }}</td>
-                    <td>{{ cliente.password  }}</td>
+                    <td>{{ cliente.username }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.password }}</td>
                     <td>
-                        <a href= "/clientes/editar/{{cliente.id}}">
+                        <a href="/clientes/editar/{{ cliente.id }}">
                             Actualizar
                         </a>
                     </td>
                     <td>
-                        <a href= "/clientes/eliminar/{{cliente.id}}">
+                        <a href="/clientes/eliminar/{{ cliente.id }}">
                             Eliminar
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/clientes/crear">
+                            <img src="{{ url_for('static', filename='img/mas.png') }}" alt="Mas" width="20" height="20">
                         </a>
                     </td>
                 </tr>

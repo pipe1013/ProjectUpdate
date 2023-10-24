@@ -24,12 +24,15 @@ class Cliente(UserMixin, db.Model):
 def load_user(id):
         return Cliente.query.get(id)
 
+
 class Producto(db.Model):
-        __tablename__ = "productos"
-        id = db.Column(db.Integer, primary_key = True)
-        nombre = db.Column(db.String(100))
-        precio = db.Column(db.Numeric(precision = 10 , scale = 2))
-        imagen = db.Column(db.String(100))
+    __tablename__ = "productos"
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    precio = db.Column(db.Numeric(precision=10, scale=2))
+    fecha = db.Column(db.Integer) 
+    descripcion = db.Column(db.String(100))
+
         
 class Venta(db.Model):
         __tablename__ = "ventas"

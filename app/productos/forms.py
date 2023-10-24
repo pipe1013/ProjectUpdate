@@ -1,25 +1,23 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField
-from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms.validators import InputRequired, NumberRange
+from wtforms import StringField, IntegerField, TextAreaField, SubmitField
+from wtforms.validators import InputRequired
 
-class ProductForm():
-     nombre = StringField('ingrese producto:' , 
-                         validators=[InputRequired(message="nombre requerido")] )
-     precio = IntegerField("ingrese precio:", validators=[
-                                                InputRequired(message="precio requerido"),
-                                                NumberRange(message="precio fuera de rango",
-                                                            min =10000, 
-                                                            max =100000)    
-                                            ])
+class ProductForm:
+    nombre = StringField('Nombre del servicio:', validators=[InputRequired(message="Nombre requerido")])
+    precio = IntegerField('Precio del servicio:', validators=[InputRequired(message="Precio requerido")])
+    fecha = IntegerField('Tiempo estimado (en horas):', validators=[InputRequired(message="Tiempo requerido")])
+    descripcion = TextAreaField('Descripción del servicio:', validators=[InputRequired(message="Descripción requerida")])
 
-class NewProductForm(FlaskForm, ProductForm):
-    imagen = FileField(validators=[FileRequired(message="Debe ingresar un archivo"),
-                                   FileAllowed(['jpg', 'png'] ,
-                                               message="solo se admite imagenes"
-                                               ) ],
-                        label="Ingrese imagen del producto:")    
-    submit = SubmitField("registrar")
+class NewProductForm(FlaskForm):
+    nombre = StringField('Nombre del servicio:', validators=[InputRequired(message="Nombre requerido")])
+    precio = IntegerField('Precio del servicio:', validators=[InputRequired(message="Precio requerido")])
+    fecha = IntegerField('Tiempo estimado (en Dias):', validators=[InputRequired(message="Tiempo requerido")])
+    descripcion = TextAreaField('Descripción del servicio:', validators=[InputRequired(message="Descripción requerida")])
+    submit = SubmitField("Registrar")
 
-class EditProductForm(FlaskForm, ProductForm):
-     submit = SubmitField("registrar")
+class EditProductForm(FlaskForm):
+    nombre = StringField('Nombre del servicio:', validators=[InputRequired(message="Nombre requerido")])
+    precio = IntegerField('Precio del servicio:', validators=[InputRequired(message="Precio requerido")])
+    fecha = IntegerField('Tiempo estimado (en Dias):', validators=[InputRequired(message="Tiempo requerido")])
+    descripcion = TextAreaField('Descripción del servicio:', validators=[InputRequired(message="Descripción requerida")])
+    submit = SubmitField("Actualizar")
